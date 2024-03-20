@@ -1,15 +1,32 @@
+import javax.management.ObjectName;
+import java.io.*;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        User userDetails=new User();
+        userDetails.name="Hasitha";
+        userDetails.age=22;
+        FileOutputStream Fileout=new FileOutputStream("userinfo.ser");
+        ObjectOutputStream output=new ObjectOutputStream(Fileout);
+        output.writeObject(userDetails);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        output.close();
+        Fileout.close();
+        System.out.println("Done");
+
+        User getfromfile=new User();
+        FileInputStream filein=new FileInputStream("userinfo.ser");
+        ObjectInputStream in=new ObjectInputStream(filein);
+        userDetails=(User) in.readObject();
+        in.close();
+        filein.close();
+        System.out.println("done");
+        System.out.println(userDetails.name);
+        System.out.println(userDetails.age);
+
+
+
     }
 }
