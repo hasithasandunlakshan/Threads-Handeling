@@ -1,4 +1,4 @@
-package Threads.PrinterShop;
+package PrinterShop;
 
 public class Printer implements Runnable {
     private int x;
@@ -35,6 +35,7 @@ public class Printer implements Runnable {
         Printer printer2 = new Printer();
         printer2.prints(200, 210);
         Thread thread2 = new Thread(printer2);
+
         thread2.start();
     }
 }

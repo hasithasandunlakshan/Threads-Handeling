@@ -7,18 +7,23 @@ AccountHolder(Account acc){
 
 }
     @Override
-    public  void run() {
-    for (int i=1;i<=4;i++){
+    public synchronized   void run() {
+
         //System.out.println(Thread.currentThread().getName()+"'s  Attemt   "+i);
         makewithdraw(2000);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         if (account.getBalance()<0){
             System.out.println("account is overdrwan");
         }
-    }
+
 
     }
-    public synchronized void  makewithdraw(int withdrawalAmmount){
+    public void  makewithdraw(int withdrawalAmmount){
     if(account.getBalance()>=withdrawalAmmount){
         System.out.println(Thread.currentThread().getName()+"   is going to withdrawal  "+withdrawalAmmount);
         try{

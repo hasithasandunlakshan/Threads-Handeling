@@ -2,7 +2,7 @@ package BankSystemUsingThreads;
 
 public class Account
 {
-    private int balance=8000;
+    private int balance=10000;
     public int getBalance(){
         return balance;
 
